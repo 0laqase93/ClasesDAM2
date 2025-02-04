@@ -39,9 +39,10 @@ class AgregarNoticiaActivity : AppCompatActivity() {
 
     private fun guardarDatos(noticiaEntity: NoticiaEntity) {
         lifecycleScope.launch(Dispatchers.IO) {
-            withContext(Dispatchers.Main) {
-                Aplicacion.baseDeDatos.noticiaDao().agregarNoticia(noticiaEntity)
-            }
+            Aplicacion
+                .baseDeDatos
+                .noticiaDao()
+                .agregarNoticia(noticiaEntity)
         }
     }
 }

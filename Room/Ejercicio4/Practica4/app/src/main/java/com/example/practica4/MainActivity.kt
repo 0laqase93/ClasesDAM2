@@ -50,11 +50,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
     private fun obtenerNoticias() {
         lifecycleScope.launch(Dispatchers.IO) {
-            val noticias = Aplicacion.baseDeDatos.noticiaDao().obtenerTodasLasNoticias()
-
-            withContext(Dispatchers.Main) {
-                adaptadorNoticias.establecerNoticias(noticias)
-            }
+            val noticias = Aplicacion
+                .baseDeDatos
+                .noticiaDao()
+                .obtenerTodasLasNoticias()
+            adaptadorNoticias.establecerNoticias(noticias)
         }
     }
 
@@ -69,9 +69,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     override fun alEliminar(noticiaEntity: NoticiaEntity) {
         adaptadorNoticias.eliminar(noticiaEntity)
         lifecycleScope.launch(Dispatchers.IO) {
-            withContext(Dispatchers.Main) {
-                Aplicacion.baseDeDatos.noticiaDao().borrarNoticia(noticiaEntity)
-            }
+            Aplicacion
+                .baseDeDatos
+                .noticiaDao()
+                .borrarNoticia(noticiaEntity)
         }
     }
 }
