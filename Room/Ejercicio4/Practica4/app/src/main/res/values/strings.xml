@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Practica4</string>
+    <string name="userName">NombreUsuario</string>
+    <string name="userEmail">EmailUsuario</string>
+    <string name="userPassword">ContrasenaUsuario</string>
+    <string name="remember">Recordar</string>
+    <string name="passwordText">Contraseña</string>
+    <string name="emailText">Correo electrónico</string>
+    <string name="description1">Inicia sesión para continuar</string>
+    <string name="welcomeTitle">Bienvenido</string>
+    <string name="registerTextQuestion">¿No tienes cuenta? Regístrate</string>
+    <string name="registerTitle">Registrarse</string>
+    <string name="subtitle2">Regístrate para continuar</string>
+    <string name="nameText">Nombre</string>
+    <string name="registerText">Registrarse</string>
+    <string name="rememberText">Recordarme</string>
+    <string name="loginText">Iniciar Sesión</string>
+    <string name="image_description">Imagen</string>
+    <string name="like_button">Botón de like\n</string>
+</resources>
