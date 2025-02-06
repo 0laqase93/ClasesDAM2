@@ -21,9 +21,7 @@ class AdaptadorNoticias(
 
         fun establecerListener(noticia: NoticiaEntity) {
             with(binding) {
-                root.setOnClickListener {
-                    // Aquí se puede implementar la acción al hacer clic en el elemento
-                }
+                root.setOnClickListener { listener.alHacerClic(noticia) }
 
                 btnLike.setOnClickListener { listener.alDarleAFavorito(noticia) }
 
@@ -71,7 +69,7 @@ class AdaptadorNoticias(
     }
 
     fun actualizar(noticia: NoticiaEntity) {
-        val indice = listaNoticias.indexOf(noticia)
+        val indice = listaNoticias.indexOfFirst { it.id == noticia.id }
 
         if (indice != -1) {
             listaNoticias[indice] = noticia
