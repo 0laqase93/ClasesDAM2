@@ -13,8 +13,6 @@ interface FavoritoDao {
     suspend fun obtenerTodosLosFavoritos(userId: Int): MutableList<FavoritoEntity>
     @Insert
     suspend fun agregarFavorito(favoritoEntity: FavoritoEntity)
-    @Update
-    suspend fun actualizarFavorito(favoritoEntity: FavoritoEntity)
     @Delete
     suspend fun borrarFavorito(favoritoEntity: FavoritoEntity)
 }

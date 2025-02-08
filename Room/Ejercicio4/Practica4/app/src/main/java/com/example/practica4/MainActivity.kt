@@ -31,29 +31,13 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val preferencias: SharedPreferences = getPreferences(Context.MODE_PRIVATE)
-        usuario = intent.getSerializableExtra("usuario") as? UsuarioEntity
-        // Si no ha encotrado el usuario lo crea a través de shared preferences
-        if (usuario == null) {
-            val id = preferencias.getLong("IdUsuarioMain", -1)
-            val email = preferencias.getString("CorreoUsuarioMain", null)
-            val nombre = preferencias.getString("NombreUsuarioMain", null)
-            val contrasena = preferencias.getString("ContrasenaUsuarioMain", null)
-            usuario = UsuarioEntity(id = id, email = email, nombre = nombre, contrasena = contrasena)
-        }
+        usuario = intent.getSerializableExtra("Usuario") as? UsuarioEntity
 
         val botonFlotante = binding.addNew
         botonFlotante.setOnClickListener {
             Toast.makeText(this, "Creando noticia", Toast.LENGTH_SHORT).show()
-            // Guardar usuario en shared preference para no perderlo al cambiar de activity
-            with(preferencias.edit()) {
-                // El !! es porque el preferences no acepta datos que puedan ser nulos
-                putLong("IdUsuarioMain", usuario!!.id)
-                putString("CorreoUsuarioMain", usuario!!.email)
-                putString("NombreUsuarioMain", usuario!!.nombre)
-                putString("ContrasenaUsuarioMain", usuario!!.contrasena)
-            }.apply()
             val intent = Intent(this, AgregarNoticiaActivity::class.java)
+            intent.putExtra("Usuario", usuario)
             startActivity(intent)
         }
 
@@ -93,6 +77,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     override fun alDarleAFavorito(noticiaEntity: NoticiaEntity) {
+        Toast.makeText(this, noticiaEntity.id.toString() + " : " + usuario?.id, Toast.LENGTH_SHORT).show()
         noticiaEntity.esFavorita = !noticiaEntity.esFavorita
         adaptadorNoticias.actualizar(noticiaEntity)
         lifecycleScope.launch(Dispatchers.IO) {
