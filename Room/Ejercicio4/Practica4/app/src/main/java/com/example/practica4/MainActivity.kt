@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.practica4.Entity.FavoritoEntity
@@ -26,6 +27,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private  var usuario: UsuarioEntity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Forzamos el modo claro para toda la aplicación.
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -77,7 +80,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     override fun alDarleAFavorito(noticiaEntity: NoticiaEntity) {
-        Toast.makeText(this, noticiaEntity.id.toString() + " : " + usuario?.id, Toast.LENGTH_SHORT).show()
         noticiaEntity.esFavorita = !noticiaEntity.esFavorita
         adaptadorNoticias.actualizar(noticiaEntity)
         lifecycleScope.launch(Dispatchers.IO) {

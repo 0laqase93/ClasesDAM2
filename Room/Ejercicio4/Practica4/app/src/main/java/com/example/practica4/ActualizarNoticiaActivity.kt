@@ -3,6 +3,7 @@ package com.example.practica4
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
 import com.example.practica4.Entity.NoticiaEntity
 import com.example.practica4.Entity.UsuarioEntity
@@ -15,6 +16,8 @@ class ActualizarNoticiaActivity : AppCompatActivity() {
     private lateinit var binding: ActivityActualizarNoticiaBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Forzamos el modo claro para toda la aplicación.
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
 
         binding = ActivityActualizarNoticiaBinding.inflate(layoutInflater)
