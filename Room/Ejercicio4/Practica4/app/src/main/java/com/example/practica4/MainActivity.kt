@@ -79,7 +79,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 .baseDeDatos
                 .noticiaDao()
                 .obtenerTodasLasNoticias()
-            adaptadorNoticias.establecerNoticias(noticias)
+
+            withContext(Dispatchers.Main) {
+                adaptadorNoticias.establecerNoticias(noticias)
+            }
         }
     }
 

@@ -9,8 +9,8 @@ import com.example.practica4.Entity.UsuarioEntity
 
 @Dao
 interface UsuarioDao {
-    @Query("SELECT * FROM UsuarioEntity WHERE nombre = :nombre AND contrasena = :contrasena")
-    suspend fun obtenerUsuario(nombre: String, contrasena: String): UsuarioEntity?
+    @Query("SELECT * FROM UsuarioEntity WHERE email = :email AND contrasena = :contrasena")
+    suspend fun obtenerUsuario(email: String, contrasena: String): UsuarioEntity?
 
     @Insert
     suspend fun agregarUsuario(usuarioEntity: UsuarioEntity)
