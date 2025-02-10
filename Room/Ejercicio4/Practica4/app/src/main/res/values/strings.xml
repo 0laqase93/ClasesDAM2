@@ -17,4 +17,16 @@
     <string name="loginText">Iniciar Sesión</string>
     <string name="image_description">Imagen</string>
     <string name="like_button">Botón de like\n</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="inserte_la_fecha">Inserte la fecha:</string>
+    <string name="resumen">Resumen</string>
+    <string name="inserte_el_resumen_de_la_noticia">Inserte el resumen de la noticia:</string>
+    <string name="t_tulo">Título</string>
+    <string name="inserte_el_t_tulo_de_la_noticia">Inserte el título de la noticia:</string>
+    <string name="guardar">Guardar</string>
+    <string name="fecha_dd_mm_aaaa">Fecha (dd/mm/aaaa)</string>
+    <string name="url_de_la_noticia">URL de la noticia</string>
+    <string name="inserte_el_enlace_de_la_noticia">Inserte el enlace de la noticia:</string>
+    <string name="url_de_la_imagen">URL de la imagen</string>
+    <string name="inserte_la_url_de_la_imagen">Inserte la URL de la imagen:</string>
 </resources>

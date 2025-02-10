@@ -33,11 +33,18 @@ class AgregarNoticiaActivity : AppCompatActivity() {
 
         val botonGuardar: Button = binding.btnGuardar
         botonGuardar.setOnClickListener {
-            val titulo: String = binding.insertarTitulo.text.toString()
-            val descripcion: String = binding.insertarResumen.text.toString()
-            val fecha: String = binding.insertarFecha.text.toString()
+            val titulo = binding.insertarTitulo.text.toString()
+            val descripcion = binding.insertarResumen.text.toString()
+            val fecha = binding.insertarFecha.text.toString()
+            val imagenUrl = binding.insertarImagen.text.toString()
+            val noticiaUrl = binding.insertarEnlace.text.toString()
 
-            val noticia = NoticiaEntity(titulo = titulo, descripcion = descripcion, fecha = fecha)
+            val noticia = NoticiaEntity(
+                titulo = titulo,
+                descripcion = descripcion,
+                fecha = fecha,
+                imagenUrl = imagenUrl,
+                noticiaUrl = noticiaUrl)
             guardarDatos(noticia)
 
             val intent = Intent(this, MainActivity::class.java)

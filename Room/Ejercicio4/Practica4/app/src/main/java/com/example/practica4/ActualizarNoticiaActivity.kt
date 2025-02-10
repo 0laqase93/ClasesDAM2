@@ -15,10 +15,14 @@ import kotlinx.coroutines.launch
 class ActualizarNoticiaActivity : AppCompatActivity() {
     private lateinit var binding: ActivityActualizarNoticiaBinding
 
+    private  var usuario: UsuarioEntity? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         // Forzamos el modo claro para toda la aplicación.
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)
+
+        usuario = intent.getSerializableExtra("Usuario") as? UsuarioEntity
 
         binding = ActivityActualizarNoticiaBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -41,14 +45,19 @@ class ActualizarNoticiaActivity : AppCompatActivity() {
         btn_actualizar.setOnClickListener {
             val id = noticiaObtenida.id
             val esFavorita = noticiaObtenida.esFavorita
+            val imagenUrl = noticiaObtenida.imagenUrl
+            val noticiaUrl = noticiaObtenida.noticiaUrl
             val noticiaActualizada = NoticiaEntity(
                 id = id,
                 titulo = et_titulo.text.toString(),
                 descripcion = et_descripcion.text.toString(),
                 fecha = et_fecha.text.toString(),
-                esFavorita = esFavorita)
+                esFavorita = esFavorita,
+                imagenUrl = imagenUrl,
+                noticiaUrl = noticiaUrl)
             guardarNoticia(noticiaActualizada)
             intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("Usuario", usuario)
             startActivity(intent)
         }
     }

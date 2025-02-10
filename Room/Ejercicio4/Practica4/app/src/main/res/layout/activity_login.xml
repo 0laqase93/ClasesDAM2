@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/loginText"
                     android:textColor="#FFFFFF"
-                    android:backgroundTint="#4CAF50"
+                    android:backgroundTint="@color/boton"
                     android:paddingVertical="12dp"
                     android:layout_marginBottom="16dp" />
 

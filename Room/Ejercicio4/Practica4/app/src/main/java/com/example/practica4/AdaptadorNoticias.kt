@@ -1,10 +1,16 @@
 package com.example.practica4
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.practica4.Entity.NoticiaEntity
 import com.example.practica4.databinding.ItemNewBinding
 
@@ -54,6 +60,23 @@ class AdaptadorNoticias(
 
                 val icono = if (noticia.esFavorita) R.drawable.ic_like else R.drawable.ic_unlike
                 btnLike.setImageResource(icono)
+
+                btnOpenLink.setOnClickListener {
+                    val url = noticia.noticiaUrl
+                    try {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                        contexto.startActivity(intent)
+                    } catch (e: Exception) {
+                        Toast.makeText(contexto, "No se pudo abrir el enlace", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                Glide.with(binding.tvImage.context)
+                    .load(noticia.imagenUrl)
+                    .error(R.drawable.ic_launcher_background)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
+                    .into(binding.tvImage)
             }
         }
     }

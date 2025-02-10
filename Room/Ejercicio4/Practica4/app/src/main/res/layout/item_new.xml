@@ -2,67 +2,117 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="4dp">
+    android:layout_margin="10dp"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="4dp"
+    android:clickable="true"
+    android:focusable="true">
 
-    <FrameLayout
+    <!-- Contenedor principal en orientación vertical -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:paddingBottom="10dp">
 
-        <!-- Contenedor principal con el contenido de la noticia -->
-        <LinearLayout
+        <!-- FrameLayout para permitir sobreponer el botón de like -->
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Título de la noticia -->
-            <TextView
-                android:id="@+id/tvTitle"
+            <!-- Contenedor horizontal con imagen y textos -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Título de la Noticia"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
-                android:ellipsize="end" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-            <!-- Descripción de la noticia -->
-            <TextView
-                android:id="@+id/tvDescription"
-                android:layout_width="match_parent"
+                <!-- Imagen -->
+                <ImageView
+                    android:id="@+id/tvImage"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="@string/image_description"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/ic_launcher_background" />
+
+                <!-- Contenedor vertical para los textos -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <!-- Título -->
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Título de la Noticia"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:ellipsize="end"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="40dp"/>
+
+                    <!-- Descripción -->
+                    <TextView
+                        android:id="@+id/tvDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Descripción breve de la noticia. Máximo dos líneas de texto."
+                        android:textSize="14sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:ellipsize="end"
+                        android:maxLines="3"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="10dp"/>
+
+                    <!-- Fecha -->
+                    <TextView
+                        android:id="@+id/tvDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="20 de enero de 2025"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="10dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Botón de Like en la esquina superior derecha -->
+            <ImageButton
+                android:id="@+id/btnLike"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Descripción breve de la noticia. Máximo dos líneas de texto."
-                android:textSize="14sp"
-                android:textColor="@android:color/darker_gray"
-                android:ellipsize="end"
-                android:layout_marginTop="4dp" />
+                android:layout_gravity="top|end"
+                android:layout_margin="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_unlike"
+                android:contentDescription="@string/like_button"/>
+        </FrameLayout>
 
-            <!-- Fecha de la noticia -->
-            <TextView
-                android:id="@+id/tvDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="20 de enero de 2025"
-                android:textSize="12sp"
-                android:textColor="@android:color/black"
-                android:layout_marginTop="8dp" />
-
-        </LinearLayout>
-
-        <!-- Botón de Like posicionado en la esquina superior derecha -->
-        <ImageButton
-            android:id="@+id/btnLike"
-            android:layout_width="wrap_content"
+        <!-- Botón en la parte inferior -->
+        <Button
+            android:id="@+id/btnOpenLink"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="top|end"
-            android:layout_margin="8dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_unlike"
-            android:contentDescription="@string/like_button" />
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="10dp"
+            android:text="Abrir Noticia"
+            android:textSize="16sp"
+            android:backgroundTint="@color/boton"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
 
-    </FrameLayout>
 </androidx.cardview.widget.CardView>

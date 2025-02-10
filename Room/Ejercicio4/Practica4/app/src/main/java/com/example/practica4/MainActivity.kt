@@ -67,6 +67,19 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 .noticiaDao()
                 .obtenerTodasLasNoticias()
 
+            val favoritos = usuario?.let {
+                Aplicacion
+                    .baseDeDatos
+                    .favoritoDao()
+                    .obtenerTodosLosFavoritos(it.id)
+            }
+
+            noticias.forEach { noticia ->
+                if (favoritos != null) {
+                    noticia.esFavorita = favoritos.any { it.noticiaId == noticia.id }
+                }
+            }
+
             withContext(Dispatchers.Main) {
                 adaptadorNoticias.establecerNoticias(noticias)
             }
@@ -76,6 +89,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     override fun alHacerClic(noticiaEntity: NoticiaEntity) {
         val intent = Intent(this, ActualizarNoticiaActivity::class.java)
         intent.putExtra("Noticia", noticiaEntity)
+        intent.putExtra("Usuario", usuario)
         startActivity(intent)
     }
 
@@ -83,8 +97,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         noticiaEntity.esFavorita = !noticiaEntity.esFavorita
         adaptadorNoticias.actualizar(noticiaEntity)
         lifecycleScope.launch(Dispatchers.IO) {
-            // Esto asignará 0L en caso de que usuario sea null.
-            val favoritoEntity = FavoritoEntity(usuario?.id ?: 0L, noticiaEntity.id)
+            // Esto asignará -1 en caso de que usuario sea null. (No debería)
+            val favoritoEntity = FavoritoEntity(usuario?.id ?: -1, noticiaEntity.id)
             if (noticiaEntity.esFavorita) {
                 Aplicacion
                     .baseDeDatos
