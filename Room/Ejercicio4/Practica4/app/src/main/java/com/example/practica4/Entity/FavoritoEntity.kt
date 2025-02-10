@@ -9,10 +9,10 @@ import androidx.room.ForeignKey.Companion.CASCADE
     tableName = "FavoritoEntity",
     primaryKeys = ["usuarioId", "noticiaId"],
     foreignKeys = [
-        ForeignKey(entity = UsuarioEntity::class, parentColumns = ["id"], childColumns = ["usuarioId"]),
-                //onDelete = CASCADE), // Esto borra los favoritos si se borra la noticia
-        ForeignKey(entity = NoticiaEntity::class, parentColumns = ["id"], childColumns = ["noticiaId"]),
-               // onDelete = CASCADE) // Esto borra los favoritos si se borra la noticia
+        ForeignKey(entity = UsuarioEntity::class, parentColumns = ["id"], childColumns = ["usuarioId"],
+                onDelete = CASCADE), // Esto borra los favoritos si se borra la noticia
+        ForeignKey(entity = NoticiaEntity::class, parentColumns = ["id"], childColumns = ["noticiaId"],
+                onDelete = CASCADE) // Esto borra los favoritos si se borra la noticia
     ]
 )
 data class FavoritoEntity(
